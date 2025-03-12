@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Redes Industriais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2 id="question">Pergunta aqui</h2>
+        <div id="options"></div>
+        <button onclick="nextQuestion()">Próxima</button>
+        <p id="feedback"></p>
+    </div>
+    
+    <script>
+        const quizData = [
+            {
+                question: "Qual desses protocolos é usado para comunicação determinística em redes industriais?",
+                options: ["HTTP", "Modbus TCP", "MQTT", "CANopen"],
+                answer: 1
+            },
+            {
+                question: "O que significa a sigla PROFINET?",
+                options: ["Protocol Network", "Process Field Net", "Professional Internet", "Programmable Field Network"],
+                answer: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function loadQuestion() {
+            const questionElement = document.getElementById("question");
+            const optionsElement = document.getElementById("options");
+            const feedbackElement = document.getElementById("feedback");
+            
+            questionElement.textContent = quizData[currentQuestion].question;
+            optionsElement.innerHTML = "";
+            feedbackElement.textContent = "";
+            
+            quizData[currentQuestion].options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.textContent = option;
+                button.onclick = () => checkAnswer(index);
+                optionsElement.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selected) {
+            const feedbackElement = document.getElementById("feedback");
+            if (selected === quizData[currentQuestion].answer) {
+                feedbackElement.textContent = "Correto!";
+                feedbackElement.style.color = "green";
+            } else {
+                feedbackElement.textContent = "Errado! A resposta correta é: " + quizData[currentQuestion].options[quizData[currentQuestion].answer];
+                feedbackElement.style.color = "red";
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                alert("Quiz finalizado!");
+            }
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
