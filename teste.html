@@ -102,6 +102,11 @@
             opacity: 0.5;
         }
 
+        .match-item.disabled {
+            cursor: not-allowed;
+            background: #e9ecef;
+        }
+
         /* Feedback */
         #feedback {
             margin-top: 20px;
@@ -115,7 +120,7 @@
         .navigation-buttons {
             margin-top: 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
         }
 
         .navigation-buttons button {
@@ -180,7 +185,6 @@
         </div>
         <p id="feedback"></p>
         <div class="navigation-buttons">
-            <button onclick="previousQuestion()" id="prevButton" disabled>Anterior</button>
             <button onclick="nextQuestion()" id="nextButton">Próxima</button>
         </div>
     </div>
@@ -189,9 +193,9 @@
         const quizData = [
             {
                 type: "multiple-choice",
-                question: "O que significa a sigla CLP?",
-                options: ["Controlador Lógico Programável", "Comando de Logística de Produção", "Controle de Loop Programado", "Central de Logística de Processos"],
-                answer: 0
+                question: "O que um sinal analógico?",
+                options: ["Sinal que varia de valor Booleano", "Sinal que tem valores discretos", "Sinal que varia no decorrer do tempo"],
+                answer: 2
             },
             {
                 type: "match",
@@ -215,45 +219,122 @@
                 question: "O que é 'Determinismo' em redes industriais?",
                 options: ["A capacidade de prever o tempo de resposta da rede", "Um tipo de protocolo de comunicação", "Um método de criptografia de dados", "Um sistema de redundância de rede"],
                 answer: 0
-            }
+            },
+	    {
+		type: "match",
+                question: "Associe os termos às suas definições:",
+		terms: ["CLP", "Radiofrequência", "Supervisório", "Portal(gateway)"],
+		definitions: [
+		   "Controlador Lógico Programável. Dispositivo eletrônico que controla os processos industriais.",
+		   "Frequências de onda de rádio. Refere-se à oscilações eletromagnéticas.",
+		   "Software que monitora, armazena e coleta dados de processos produtivos",
+		   "Equipamento cuja função básica é estabelecer a comunicação entre redes que se comunicam em diferentes padrões."
+		],
+		matches: {
+		   "CLP": "Controlador Lógico Programável. Dispositivo eletrônico que controla os processos industriais.",
+		   "Radiofrequência": "Frequências de onda de rádio. Refere-se à oscilações eletromagnéticas.",
+		   "Supervisório": "Software que monitora, armazena e coleta dados de processos produtivos",
+		   "Portal(gateway)": "Equipamento cuja função básica é estabelecer a comunicação entre redes que se comunicam em diferentes padrões."
+			 }
+	    },
+	    {
+		type: "multiple-choice",
+		question: "O que é IoT?",
+		options: ["É um padrão internacional para automação de edifícios", "Internet das Coisas. Permite que dispositivos inteligentes coletem e troquem dados", "coleção de informações armazenadas de forma sistemática e organizada, em um sistema de computador", "É o processo de utilizar dispositivos que detectam mudanças no ambiente e convertem essas informações em sinais"],
+		answer: 1
+	    },
+	    {
+		type: "match",
+		question: "Associe os termos às suas definições:",
+		terms: ["Taxa de transmissão", "MQTT", "Modbus", "Pacote de dados"],
+		definitions: [
+		   "O número médio de bits, convertidos ou processados por unidade de tempo que passam entre equipamentos", "Message Queuing Telemetry Transport. protocolo de mensagens leve para sensores e pequenos dispositivos móveis", "Possui modelo de comunicação do tipo mestre escravo e pode utilizar o RS-232, RS-485 ou Ethernet como meio físico", "Estrutura unitária de transmissão de dados ou uma sequência de dados. É um pequeno segmento de uma mensagem maior"
+		],
+		matches: {
+		   "Taxa de transmissão": "O número médio de bits, convertidos ou processados por unidade de tempo que passam entre equipamentos",
+		   "MQTT": "Message Queuing Telemetry Transport. protocolo de mensagens leve para sensores e pequenos dispositivos móveis",
+		   "Modbus": "Possui modelo de comunicação do tipo mestre escravo e pode utilizar o RS-232, RS-485 ou Ethernet como meio físico",
+		   "Pacote de dados": "Estrutura unitária de transmissão de dados ou uma sequência de dados. É um pequeno segmento de uma mensagem maior"
+			 }
+	    },
+	    {
+		type: "multiple-choice",
+		question: "O que é um barramento em redes industriais?",
+		options: ["responsável pela distribuição de tensão e corrente elétrica dentro de um sistema", "sistema que consiste no direcionamento de possíveis correntes de fuga para a terra", "classifica o grau de proteção contra objetos sólidos", "Sistema de comunicação que permite que múltiplos dispositivos compartilhem o mesmo meio de transmissão de dados"],
+		answer: 3
+	    },
+	    {
+		type: "match",
+		question: "Associe os termos às suas definições:",
+		terms: ["Corrente elétrica", "Componente Físico", "Componente Lógico", "Comutador(Hub)"],
+		definitions: [
+		   "Movimento ordenado de elétrons", "Elementos tangíveis da rede, responsáveis pela transmissão de dados e controle dos dispositivos", "Estrutura de software, protocolos e configurações que organizam e gerenciam a comunicação entre dispositivos na rede", "Dispositivo de rede que simplesmente replica os dados recebidos para todas as portas, sem qualquer tipo de inteligência na distribuição do tráfego"
+			     ],
+		matches: {
+		   "Corrente elétrica": "Movimento ordenado de elétrons",
+		   "Componente Físico": "Elementos tangíveis da rede, responsáveis pela transmissão de dados e controle dos dispositivos",
+		   "Componente Lógico": "Estrutura de software, protocolos e configurações que organizam e gerenciam a comunicação entre dispositivos na rede",
+		   "Comutador(Hub)": "Dispositivo de rede que simplesmente replica os dados recebidos para todas as portas, sem qualquer tipo de inteligência na distribuição do tráfego"
+			 }
+	    },
+	    {
+		type: "multiple-choice",
+		question: "Qual opção melhor define o temo Escalabilidade?",
+		options: ["Capacidade de adicionar novos dispositivos sem mudar a estrutura principal da rede", "Capacidade da rede de crescer em tamanho e complexidade, mantendo um desempenho eficiente da rede", "distância física entre dois dispositivos dentro da rede. Afeta diretamente a qualidade da comunicação", "Responsável por estabelecer a comunicação confiável entre dispositivos na rede"],
+		answer: 1
+	    },
+	    {
+		type: "match",
+		question: "Associe os termos às suas definições:",
+		terms: ["Interconectividade", "IP", "Meio Lógico", "Normatização"],
+		definitions: [
+		   "Capacidade de diferentes dispositivos, protocolos e redes se comunicarem entre si, permitindo o compartilhamento de informações e controle integrado", "Conjunto de regras para endereçamento e roteamento de pacotes de dados dentro de redes, permitindo que dispositivos se comuniquem de forma eficiente", "Representa a forma como os dados são organizados e transmitidos dentro da rede", "Consiste em estabelecer regras e padrões técnicos para garantir interoperabilidade, segurança e confiabilidade em redes industriais"
+			     ],
+		matches: {
+		    "Interconectividade": "Capacidade de diferentes dispositivos, protocolos e redes se comunicarem entre si, permitindo o compartilhamento de informações e controle integrado",
+		    "IP": "Conjunto de regras para endereçamento e roteamento de pacotes de dados dentro de redes, permitindo que dispositivos se comuniquem de forma eficiente",
+		    "Meio Lógico": "Representa a forma como os dados são organizados e transmitidos dentro da rede",
+		    "Normatização": "Consiste em estabelecer regras e padrões técnicos para garantir interoperabilidade, segurança e confiabilidade em redes industriais"
+			 }
+	    }
         ];
 
         let currentQuestion = 0;
+        let correctAnswers = 0;
 
         function loadQuestion() {
-            const questionElement = document.getElementById("question");
-            const optionsElement = document.getElementById("options");
-            const feedbackElement = document.getElementById("feedback");
-            const progressElement = document.getElementById("progress");
-            const prevButton = document.getElementById("prevButton");
-            const nextButton = document.getElementById("nextButton");
-            const matchContainer = document.getElementById("matchContainer");
+        const questionElement = document.getElementById("question");
+    	const optionsElement = document.getElementById("options");
+    	const feedbackElement = document.getElementById("feedback");
+    	const progressElement = document.getElementById("progress");
+    	const nextButton = document.getElementById("nextButton");
+    	const matchContainer = document.getElementById("matchContainer");
 
-            // Limpa o conteúdo anterior
-            optionsElement.innerHTML = "";
-            feedbackElement.textContent = "";
-            matchContainer.classList.remove("active"); // Oculta o container de associação
+    	// Limpa o conteúdo anterior
+    	optionsElement.innerHTML = "";
+    	feedbackElement.textContent = "";
+    	matchContainer.classList.remove("active"); // Oculta o container de associação
 
-            const currentQuizData = quizData[currentQuestion];
+    	const currentQuizData = quizData[currentQuestion];
 
-            questionElement.textContent = currentQuizData.question;
-            progressElement.textContent = `Pergunta ${currentQuestion + 1} de ${quizData.length}`;
+    	questionElement.textContent = currentQuizData.question;
+    	progressElement.textContent = `Pergunta ${currentQuestion + 1} de ${quizData.length}`;
 
-            if (currentQuizData.type === "multiple-choice") {
-                currentQuizData.options.forEach((option, index) => {
-                    const button = document.createElement("button");
-                    button.textContent = option;
-                    button.onclick = () => checkAnswer(index);
-                    optionsElement.appendChild(button);
-                });
-            } else if (currentQuizData.type === "match") {
-                matchContainer.classList.add("active"); // Exibe o container de associação
-                loadMatchQuestion(currentQuizData);
-            }
+    	if (currentQuizData.type === "multiple-choice") {
+        	currentQuizData.options.forEach((option, index) => {
+            	const button = document.createElement("button");
+            	button.textContent = option;
+            	button.onclick = () => checkAnswer(index);
+            	optionsElement.appendChild(button);
+        	});
+    	} else if (currentQuizData.type === "match") {
+        	matchContainer.classList.add("active"); // Exibe o container de associação
+        	loadMatchQuestion(currentQuizData);
+    	}
 
-            prevButton.disabled = currentQuestion === 0;
-            nextButton.disabled = currentQuestion === quizData.length - 1;
-        }
+   	 // Botão "Próxima" sempre habilitado
+   	 nextButton.disabled = false;
+	}
 
         function loadMatchQuestion(questionData) {
             const termsColumn = document.getElementById("termsColumn");
@@ -296,6 +377,11 @@
                         definitionItem.style.backgroundColor = "#d4edda"; // Verde claro para correto
                         feedbackElement.textContent = "Correto!";
                         feedbackElement.style.color = "green";
+                        // Desabilita o arraste do termo associado corretamente
+                        const termItem = Array.from(termsColumn.children).find(item => item.textContent === term);
+                        termItem.draggable = false;
+                        termItem.classList.add("disabled");
+                        correctAnswers++;
                     } else {
                         definitionItem.style.backgroundColor = "#f8d7da"; // Vermelho claro para incorreto
                         feedbackElement.textContent = "Errado! Tente novamente.";
@@ -315,6 +401,7 @@
             if (selected === quizData[currentQuestion].answer) {
                 feedbackElement.textContent = "Correto!";
                 feedbackElement.style.color = "green";
+                correctAnswers++;
             } else {
                 feedbackElement.textContent = "Errado! A resposta correta é: " + quizData[currentQuestion].options[quizData[currentQuestion].answer];
                 feedbackElement.style.color = "red";
@@ -323,17 +410,11 @@
 
         function nextQuestion() {
             if (currentQuestion < quizData.length - 1) {
-                currentQuestion++;
-                loadQuestion();
-            } else {
-                alert("Quiz finalizado!");
-            }
-        }
-
-        function previousQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                loadQuestion();
+        	currentQuestion++;
+        	loadQuestion();
+    	    } else {
+        	const percentage = (correctAnswers / quizData.length) * 100;
+        	alert(`Quiz finalizado! Você acertou ${correctAnswers} de ${quizData.length} questões (${percentage.toFixed(2)}%).`);
             }
         }
 
